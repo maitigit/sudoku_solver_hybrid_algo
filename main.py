@@ -100,8 +100,8 @@ if __name__ == "__main__":
     print("-" * 25)
     print("generating please wait....")
 
-    # First try backtracking
-    board_copy = [row[:] for row in board]  # Deep copy
+    # BT
+    board_copy = [row[:] for row in board]  
     start_time = time.time()
     
     solved_board_data = None
@@ -113,7 +113,7 @@ if __name__ == "__main__":
         SudokuBoard("".join([str(x) for row in solved_board_data for x in row])).print_board()
         print(f"Time taken : {time_elapsed:.4f} seconds")
     else:
-        # If backtracking fails, fall back to hybrid solver
+       #
         print("Backtracking failed, trying hybrid solver...")
         start_time_hybrid = time.time()
         solved_board_data_hybrid = solve_sudoku_hybrid(board)
