@@ -1,10 +1,7 @@
 from sudoku import SudokuBoard
 
 def find_empty(board):
-    """
-    Find the next empty cell (with value 0) in the board.
-    Returns a tuple (row, col) or None if no empty cell is found.
-    """
+    
     for i in range(9):
         for j in range(9):
             if board[i][j] == 0:
@@ -12,10 +9,7 @@ def find_empty(board):
     return None
 
 def solve_backtracking(board):
-    """
-    Solve the Sudoku puzzle using backtracking.
-    Modifies the board in place. Returns True if solved, False otherwise.
-    """
+    
     empty = find_empty(board)
     if not empty:
         # No empty cell left, puzzle solved

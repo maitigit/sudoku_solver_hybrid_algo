@@ -1,13 +1,12 @@
 import multiprocessing
-from genetic_algorithm import genetic_algorithm
+from gpu_genetic_algorithm import parallel_genetic_algorithm
 from fuzzy_logic import fuzzy_logic_solver
 from ant_colony import ant_colony_optimization
 from sudoku import SudokuBoard
 
 def hybrid_solver(board_string, num_processes=4):
-    # 1. Genetic Algorithm
-    
-    ga_result = genetic_algorithm(board_string, population_size=500, num_generations=2000, mutation_rate=0.3)
+    # 1. Genetic Algorithm (Parallel)
+    ga_result = parallel_genetic_algorithm(board_string, population_size=500, num_generations=2000, mutation_rate=0.3)
     if ga_result is not None and ga_result.is_solved():
         return ga_result
     elif ga_result is not None and len(ga_result.get_board()) > 0:
@@ -33,7 +32,7 @@ def hybrid_solver(board_string, num_processes=4):
     if board is not None and board.is_solved():
         return board
     else:
-        return board # Return the best board found so far, even if not solved
+        return board  # Return the best board found so far, even if not solved
 
 def parallel_hybrid_solver(board_string, num_processes=4):
     board_strings = [board_string] * num_processes

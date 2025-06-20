@@ -22,17 +22,7 @@ def solve_sudoku_hybrid(board):
     return solved_board
 
 def load_board_from_json(file_path, board_index=0):
-    """Loads a Sudoku board and its id from a JSON file.
-
-    Args:
-        file_path (str): The path to the JSON file.
-        board_index (int, optional): The index of the board to load from the list.
-                                     Defaults to 0 (the first board).
-
-    Returns:
-        tuple: (id, board) where id is the puzzle id and board is the board as a list of lists.
-        None: If the file is not found, cannot be decoded, or the index is invalid.
-    """
+    
     try:
         with open(file_path, 'r') as f:
             boards = json.load(f)

@@ -4,9 +4,9 @@ import numpy as np
 from sudoku import SudokuBoard
 
 def fuzzy_logic_solver(board_string):
+    
     board = SudokuBoard(board_string)
     initial_board = [row[:] for row in board.get_board()]
-
     # Define fuzzy variables
     row_validity = ctrl.Antecedent(np.arange(0, 10, 1), 'row_validity')
     col_validity = ctrl.Antecedent(np.arange(0, 10, 1), 'col_validity')

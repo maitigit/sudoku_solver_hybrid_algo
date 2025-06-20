@@ -2,6 +2,7 @@ import random
 from sudoku import SudokuBoard
 
 def ant_colony_optimization(board_string, num_ants=10, num_iterations=100, alpha=1, beta=2, evaporation_rate=0.5):
+    
     board = SudokuBoard(board_string)
     initial_board = board.get_board()
     pheromone = {}
@@ -15,6 +16,26 @@ def ant_colony_optimization(board_string, num_ants=10, num_iterations=100, alpha
                         pheromone[(row, col, num)] = 1
 
     def calculate_heuristic(row, col, num):
+        """
+        The function calculates a heuristic value based on the number of empty cells that can be filled
+        with a given number in the same row, column, and 3x3 box in a Sudoku board.
+        
+        :param row: The `row` parameter in the `calculate_heuristic` function represents the index of
+        the row in the Sudoku board where you want to calculate the heuristic value. It is used to
+        determine the number of empty cells that can be filled with a specific number (`num`) in the
+        same row, column,
+        :param col: The `col` parameter in the `calculate_heuristic` function represents the column
+        index of the Sudoku board where you want to calculate the heuristic value for a given number
+        `num`. The function calculates the heuristic by counting the number of empty cells in the same
+        row, column, and 3x3
+        :param num: The `num` parameter in the `calculate_heuristic` function represents the number that
+        we are trying to place in the Sudoku puzzle. The heuristic function calculates the number of
+        empty cells in the same row, column, and 3x3 box where this number can potentially be placed
+        without violating the Sudoku
+        :return: The function `calculate_heuristic` returns the count of empty cells that can be filled
+        with the number `num` in the same row, column, and 3x3 box as the given cell at position `(row,
+        col)`.
+        """
         # Heuristic: Number of empty cells that can be filled with 'num' in the same row, column, and box
         count = 1
         # Check row
@@ -35,6 +56,19 @@ def ant_colony_optimization(board_string, num_ants=10, num_iterations=100, alpha
         return count
 
     def ant_solution(board):
+        """
+        The function implements an ant colony optimization algorithm to solve a Sudoku puzzle by
+        iteratively updating pheromone levels and selecting numbers for empty cells based on
+        probabilities.
+        
+        :param board: It seems like the code snippet you provided is part of an Ant Colony Optimization
+        algorithm to solve a Sudoku puzzle. The `board` parameter is likely an object that represents
+        the Sudoku puzzle and contains methods like `is_valid(row, col, num)` to check if placing a
+        number at a specific position is
+        :return: a SudokuBoard object that represents the best solution found by the ant colony
+        optimization algorithm for solving a Sudoku puzzle. If no valid solution is found, it returns
+        None.
+        """
         new_board = [[initial_board[i][j] for j in range(9)] for i in range(9)]
         
         for row in range(9):
